@@ -16,6 +16,15 @@ TEST(scalar_scalar, add)
     EXPECT_EQ(r, 5);
 }
 
+TEST(scalar_scalar, or)
+{
+    const bool a = true;
+    const bool b = false;
+    const bool r = fl::LogicalOr{}(a, b);
+
+    EXPECT_EQ(r, true);
+}
+
 TEST(vector_vector, empty)
 {
     const std::vector<int> a{};
