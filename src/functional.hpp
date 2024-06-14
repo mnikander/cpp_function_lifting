@@ -9,8 +9,14 @@
 namespace fl {
 
 // Logical operators
+struct LogicalNot : Liftable<LogicalNot>     { template <typename T> T impl(T t) const { return !t; } };
 struct LogicalAnd : Liftable<LogicalAnd>     { template <typename T> T impl(T lhs, T rhs) const { return lhs && rhs; } };
 struct LogicalOr  : Liftable<LogicalOr>      { template <typename T> T impl(T lhs, T rhs) const { return lhs || rhs; } };
+
+// unary ops, which are both: (1) a tag which represents the operation and (2) the implementation of that operation
+struct Identity : Liftable<Identity>         { template <typename T> T impl(T t) const { return t; } };
+struct Negate   : Liftable<Negate>           { template <typename T> T impl(T t) const { return -t; } };
+// // TODO: abs, sqrt, crt, log, log_2, log_10, exp, exp_2, exp_10 ...
 
 // binary ops, which are both: (1) a tag which represents the operation and (2) the implementation of that operation
 struct Add          : Liftable<Add>          { template <typename T> T impl(T lhs, T rhs) const { return lhs + rhs; } };

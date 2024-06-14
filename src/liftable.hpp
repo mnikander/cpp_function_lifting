@@ -9,6 +9,25 @@ namespace fl {
 template <typename E>
 struct Liftable
 {
+    // scalar -> scalar
+    template <typename T>
+    auto operator()(T const& left) const
+    {
+        E const& expression = *(static_cast<const E*>(this)); // downcasting to the exact type of function via CRTP
+        return expression.impl(left);
+    }
+
+    // vector -> vector
+    template <typename T>
+    auto operator()(std::vector<T> const& left) const
+    {
+        E const& expression = *(static_cast<const E*>(this)); // downcasting to the exact type of function via CRTP
+        std::vector<decltype(expression(T{}))> result(left.size());
+        std::transform(left.cbegin(), left.cend(), result.begin(), [expression](T const& l){ return expression(l); });
+        return result;
+    }
+
+    // (scalar, scalar) -> scalar
     template <typename T>
     auto operator()(T const& left, T const& right) const
     {
@@ -16,6 +35,7 @@ struct Liftable
         return expression.impl(left, right);
     }
 
+    // (scalar, vector) -> vector
     template <typename T>
     auto operator()(T const& left, std::vector<T> const& right) const
     {
@@ -25,6 +45,7 @@ struct Liftable
         return result;
     }
 
+    // (vector, scalar) -> vector
     template <typename T>
     auto operator()(std::vector<T> const& left, T const& right) const
     {
@@ -34,6 +55,7 @@ struct Liftable
         return result;
     }
 
+    // (vector, vector) -> vector
     template <typename T>
     auto operator()(std::vector<T> const& left, std::vector<T> const& right) const
     {

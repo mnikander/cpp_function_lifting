@@ -7,6 +7,25 @@
 
 namespace {
 
+TEST(scalar, negate)
+{
+    const int a = 5;
+    const int r = fl::Negate{}(a);
+
+    EXPECT_EQ(r, -5);
+}
+
+TEST(vector, negate)
+{
+    const std::vector<int> v = {-1, 0, 1};
+    const std::vector<int> r = fl::Negate{}(v);
+
+    ASSERT_EQ(r.size(), v.size());
+    EXPECT_EQ(r[0], 1);
+    EXPECT_EQ(r[1], 0);
+    EXPECT_EQ(r[2], -1);
+}
+
 TEST(scalar_scalar, add)
 {
     const int a = 2;
