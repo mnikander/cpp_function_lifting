@@ -28,6 +28,10 @@ struct Liftable
     //      (vector, scalar) -> vector
 };
 
-struct Add : Liftable<Add> { template <typename T> T operator()(T lhs, T rhs) const { return lhs + rhs; } };
+struct Add : Liftable<Add>
+{
+    using Liftable<Add>::operator();
+    template <typename T> T operator()(T lhs, T rhs) const { return lhs + rhs; }
+};
 
 }
