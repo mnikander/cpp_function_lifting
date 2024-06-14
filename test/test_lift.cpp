@@ -43,6 +43,52 @@ TEST(scalar_scalar, or)
     EXPECT_EQ(r, true);
 }
 
+TEST(scalar_vector, add)
+{
+    const int i = 10;
+    const std::vector<int> v{0, 1, 2};
+    const std::vector<int> r = fl::Add{}(i, v);
+
+    ASSERT_EQ(r.size(), v.size());
+    EXPECT_EQ(r[0], 10);
+    EXPECT_EQ(r[1], 11);
+    EXPECT_EQ(r[2], 12);
+}
+
+TEST(scalar_vector, or)
+{
+    const bool i = false;
+    const std::vector<bool> v{false, true};
+    const std::vector<bool> r = fl::LogicalOr{}(i, v);
+
+    ASSERT_EQ(r.size(), v.size());
+    EXPECT_EQ(r[0], false);
+    EXPECT_EQ(r[1], true);
+}
+
+TEST(vector_scalar, add)
+{
+    const int i = 10;
+    const std::vector<int> v{0, 1, 2};
+    const std::vector<int> r = fl::Add{}(v, i);
+
+    ASSERT_EQ(r.size(), v.size());
+    EXPECT_EQ(r[0], 10);
+    EXPECT_EQ(r[1], 11);
+    EXPECT_EQ(r[2], 12);
+}
+
+TEST(vector_scalar, or)
+{
+    const bool i = false;
+    const std::vector<bool> v{false, true};
+    const std::vector<bool> r = fl::LogicalOr{}(v, i);
+
+    ASSERT_EQ(r.size(), v.size());
+    EXPECT_EQ(r[0], false);
+    EXPECT_EQ(r[1], true);
+}
+
 TEST(vector_vector, empty)
 {
     const std::vector<int> a{};
