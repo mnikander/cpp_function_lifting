@@ -12,7 +12,7 @@ struct Liftable
     template <typename T>
     T operator()(T const& left, T const& right) const
     {
-        const auto expression = *(static_cast<const E*>(this)); // downcasting to the exact type of function via CRTP
+        E const& expression = *(static_cast<const E*>(this)); // downcasting to the exact type of function via CRTP
         return expression.impl(left, right);
     }
 
@@ -23,7 +23,7 @@ struct Liftable
     {
         assert(left.size() <= right.size());
 
-        const auto expression = *(static_cast<const E*>(this)); // downcasting to the exact type of function via CRTP
+        E const& expression = *(static_cast<const E*>(this)); // downcasting to the exact type of function via CRTP
         std::vector<decltype(expression(T{}, T{}))> result(left.size());
 
         std::transform(left.cbegin(), left.cend(), right.cbegin(), result.begin(), expression);
