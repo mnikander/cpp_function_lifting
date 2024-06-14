@@ -22,6 +22,8 @@ cmake --build out/ # out-of-source build
 ./out/unit_tests
 ```
 
+You can find plenty of usage examples in the unit tests, but here are a few...
+
 ## Examples for unary functions
 
 ```cpp
@@ -67,7 +69,7 @@ cmake --build out/ # out-of-source build
 
 ```cpp
     // Add: (vector, vector) -> vector
-    const std::vector<int> a{10, 20};
-    const std::vector<int> b{1, 2};
+    const std::vector<int> a = {10, 20};
+    const std::vector<int> b = {1, 2};
     const std::vector<int> r = fl::Add{}(a, b); // [11, 22]
 ```
