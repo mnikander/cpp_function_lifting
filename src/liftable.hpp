@@ -70,11 +70,6 @@ struct Liftable
 
         return result;
     }
-
-    // TODO: provide more overloads for unary and binary functions
-    //               vector  -> vector
-    //      (scalar, vector) -> vector
-    //      (vector, scalar) -> vector
 };
 
 }
