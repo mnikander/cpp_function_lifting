@@ -49,7 +49,7 @@ TEST(vector_vector, empty)
     const std::vector<int> b{};
     const std::vector<int> r = fl::Add{}(a, b);
 
-    EXPECT_EQ(r.size(), 0);
+    ASSERT_EQ(r.size(), 0);
 }
 
 TEST(vector_vector, one)
@@ -58,7 +58,7 @@ TEST(vector_vector, one)
     const std::vector<int> b{1};
     const std::vector<int> r = fl::Add{}(a, b);
 
-    EXPECT_EQ(r.size(), 1);
+    ASSERT_EQ(r.size(), 1);
     EXPECT_EQ(r[0], 2);
 }
 
@@ -68,7 +68,7 @@ TEST(vector_vector, two)
     const std::vector<int> b{1, 2};
     const std::vector<int> r = fl::Add{}(a, b);
 
-    EXPECT_EQ(r.size(), 2);
+    ASSERT_EQ(r.size(), 2);
     EXPECT_EQ(r[0], 2);
     EXPECT_EQ(r[1], 4);
 }
@@ -79,7 +79,7 @@ TEST(vector_vector, logical_or)
     const std::vector<bool> b{true, false, true, false};
     const std::vector<bool> r = fl::LogicalOr{}(a, b);
 
-    EXPECT_EQ(r.size(), 4);
+    ASSERT_EQ(r.size(), 4);
     EXPECT_EQ(r[0], true);
     EXPECT_EQ(r[1], false);
     EXPECT_EQ(r[2], true);
