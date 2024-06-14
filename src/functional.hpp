@@ -31,7 +31,8 @@ struct GreaterEqual : Liftable<GreaterEqual> { template <typename T> bool impl(T
 struct LeastCommonMultiple : Liftable<LeastCommonMultiple> // note that AND is a specialization of LCM for booleans
 {
     template <typename T> T impl(T lhs, T rhs) const { return std::lcm(lhs,rhs); }
-                       bool impl(bool lhs, bool rhs) const { return lhs && rhs; } };
+                       bool impl(bool lhs, bool rhs) const { return lhs && rhs; }
+};
 
 struct GreatestCommonDivisor : Liftable<GreatestCommonDivisor> // note that OR is a specialization of GCD for booleans
 {
