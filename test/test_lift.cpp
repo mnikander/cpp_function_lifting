@@ -16,6 +16,15 @@ TEST(scalar_scalar, add)
     EXPECT_EQ(r, 5);
 }
 
+TEST(scalar_scalar, less)
+{
+    const int a = 2;
+    const int b = 3;
+    const int r = fl::Less{}(a, b);
+
+    EXPECT_EQ(r, true);
+}
+
 TEST(scalar_scalar, or)
 {
     const bool a = true;
